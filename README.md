@@ -25,7 +25,33 @@ npm run devEl servidor estará disponible en `http://localhost:3000`
 ## 🏗️ Build para producción
 
 npm run build
-npm start## 📚 Documentación de la API
+npm start
+
+## 🚀 Deploy en Vercel
+
+### 1. Configurar Variables de Entorno en Vercel
+
+Ve a tu proyecto en Vercel → Settings → Environment Variables y agrega:
+
+- `FIREBASE_DATABASE_URL`: URL de tu Realtime Database (ej: `https://tu-proyecto-default-rtdb.firebaseio.com`)
+- `FIREBASE_SERVICE_ACCOUNT`: El contenido completo del archivo `serviceAccountKey.json` como un string JSON (copia todo el contenido del archivo)
+- `NODE_ENV`: `production`
+
+### 2. Desplegar
+
+```bash
+# Instalar Vercel CLI (si no lo tienes)
+npm i -g vercel
+
+# Desplegar
+vercel
+```
+
+O simplemente conecta tu repositorio de GitHub con Vercel y se desplegará automáticamente.
+
+**Nota importante:** El archivo `serviceAccountKey.json` NO debe subirse a Git. En producción, usa la variable de entorno `FIREBASE_SERVICE_ACCOUNT`.
+
+## 📚 Documentación de la API
 
 ### Link a documentación interactiva de Postman:
 

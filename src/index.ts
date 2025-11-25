@@ -43,8 +43,13 @@ app.get("/", (req, res) => {
   });
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-  console.log(`📚 Documentación en ${Docu}/`);
-});
+// Iniciar servidor (solo en desarrollo local)
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`📚 Documentación en ${Docu}/`);
+  });
+}
+
+// Exportar para Vercel
+export default app;
