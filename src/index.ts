@@ -15,7 +15,7 @@ app.use(
     origin: [
       "http://localhost:1234",
       "https://desafio-ppt.vercel.app",
-      "https://desafio-ppt.vercel.app", // o tu dominio real
+      "https://desafio-ndg62b281-julian94xd-gmailcoms-projects.vercel.app/", // o tu dominio real
     ],
     credentials: true,
   })
