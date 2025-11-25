@@ -1,5 +1,4 @@
 *.log
 .env
-README.md
 *.postman_collection.json
 

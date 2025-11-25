@@ -29,49 +29,53 @@ npm start
 
 ## 🚀 Deploy en Vercel
 
-### 1. Configurar Variables de Entorno en Vercel
+### 1. Compilar el proyecto ANTES de hacer commit
 
-Ve a tu proyecto en Vercel → Settings → Environment Variables y agrega:
-
-- **`FIREBASE_DATABASE_URL`**: URL de tu Realtime Database (ej: `https://tu-proyecto-default-rtdb.firebaseio.com`)
-- **`FIREBASE_SERVICE_ACCOUNT`**: El contenido completo del archivo `serviceAccountKey.json` como un **string JSON en una sola línea** (copia todo el contenido del archivo y elimina saltos de línea)
-
-### 2. Compilar localmente (opcional pero recomendado)
+**IMPORTANTE**: La carpeta `dist/` ahora debe subirse a Git.
 
 ```bash
-# Compilar el proyecto
 npm run build
-
-# Verificar que la carpeta dist/ se creó correctamente
 ```
+
+### 2. Configurar Variables de Entorno en Vercel
+
+Ve a tu proyecto en Vercel → **Settings** → **Environment Variables** y agrega:
+
+- **`FIREBASE_DATABASE_URL`**: `https://desafio-ppt-online-6dfc6-default-rtdb.firebaseio.com`
+- **`FIREBASE_SERVICE_ACCOUNT`**: Copia todo el contenido de `serviceAccountKey.json`
 
 ### 3. Desplegar
 
-**Opción A: Desde GitHub**
-
-1. Sube tu código a GitHub
-2. Conecta tu repositorio en Vercel
-3. Vercel detectará automáticamente la configuración y desplegará
-
-**Opción B: Vercel CLI**
-
 ```bash
-# Instalar Vercel CLI (si no lo tienes)
-npm i -g vercel
+# Agregar TODOS los archivos (incluyendo dist/)
+git add .
 
-# Desplegar
-vercel --prod
+# Hacer commit
+git commit -m "Deploy to Vercel"
+
+# Push a GitHub
+git push
 ```
+
+Vercel redesplegará automáticamente.
 
 ### 4. Verificar
 
-Visita tu URL de Vercel (ej: `https://tu-proyecto.vercel.app/`) y deberías ver el JSON con la información de la API.
+Visita tu URL de Vercel y deberías ver:
+
+```json
+{
+  "message": "Piedra, Papel o Tijera - API REST",
+  "version": "1.0.0",
+  "endpoints": { ... }
+}
+```
 
 **Notas importantes:**
 
-- El archivo `serviceAccountKey.json` NO debe subirse a Git (ya está en `.gitignore`)
-- En producción se usa la variable de entorno `FIREBASE_SERVICE_ACCOUNT`
-- Vercel compilará automáticamente TypeScript a JavaScript usando `npm run vercel-build`
+- ✅ La carpeta `dist/` se sube a Git
+- ❌ El archivo `serviceAccountKey.json` NO se sube (está en `.gitignore`)
+- 📝 El archivo `index.js` en la raíz es el punto de entrada para Vercel
 
 ## 📚 Documentación de la API
 
