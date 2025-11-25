@@ -13,11 +13,7 @@ const PORT = process.env.PORT || 3000;
 const Docu = `https://documenter.getpostman.com/view/40679903/2sB3WyLH4k`;
 // Middlewares
 app.use((0, cors_1.default)({
-    origin: [
-        "http://localhost:1234",
-        "https://desafio-ppt.vercel.app",
-        "https://desafio-ndg62b281-julian94xd-gmailcoms-projects.vercel.app/", // o tu dominio real
-    ],
+    origin: true, // Permitir todos los orígenes temporalmente para debug
     credentials: true,
 }));
 app.use(express_1.default.json());
