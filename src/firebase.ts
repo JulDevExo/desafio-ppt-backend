@@ -5,7 +5,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Inicializar Firebase Admin
-const serviceAccount = require("../serviceAccountKey.json");
+const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT
+  ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+  : require("../serviceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -13,4 +15,3 @@ admin.initializeApp({
 });
 
 export default admin;
-
