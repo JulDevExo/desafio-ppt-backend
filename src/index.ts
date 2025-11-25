@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 3000;
 const Docu = `https://documenter.getpostman.com/view/40679903/2sB3WyLH4k`;
 
 // Middlewares
-// Middlewares
 app.use(
   cors({
     origin: [
