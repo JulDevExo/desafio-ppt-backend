@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
             play: "POST /api/rooms/:roomId/play",
             getGame: "GET /api/rooms/:roomId/game",
             finishGame: "POST /api/rooms/:roomId/finish",
+            resetGame: "POST /api/rooms/:roomId/reset",
             getScore: "GET /api/rooms/:roomId/score",
             updateOnline: "PUT /api/rooms/:roomId/players/:playerId/online",
         },

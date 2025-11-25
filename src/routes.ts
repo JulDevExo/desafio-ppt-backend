@@ -199,4 +199,26 @@ router.put(
   }
 );
 
+// POST /api/rooms/:roomId/reset - Endpoint explícito para resetear
+router.post("/rooms/:roomId/reset", async (req: Request, res: Response) => {
+  try {
+    const { roomId } = req.params;
+
+    // Resetear juego en RTDB
+    const result = await rtdbService.resetGame(roomId);
+
+    // Obtener estado actualizado
+    const gameState = await rtdbService.getGameState(roomId);
+
+    res.status(200).json({
+      roomId,
+      reset: true,
+      gameState,
+    });
+  } catch (error: any) {
+    console.error("Error resetting game:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default router;

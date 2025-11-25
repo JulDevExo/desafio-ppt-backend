@@ -52,14 +52,19 @@ exports.rtdbService = {
         const snapshot = await gameRef.once("value");
         const currentGame = snapshot.val();
         if (!currentGame)
-            return;
+            return { roomId, reset: false };
         const updates = {};
         Object.keys(currentGame).forEach((playerId) => {
+            // Resetear completamente el estado del jugador
             updates[`${playerId}/choice`] = null;
             updates[`${playerId}/start`] = false;
         });
         await gameRef.update(updates);
-        return { roomId, reset: true };
+        // Verificar que se actualizó correctamente
+        const updatedSnapshot = await gameRef.once("value");
+        const updatedGame = updatedSnapshot.val();
+        console.log(`🔄 Juego reseteado en room ${roomId}:`, updatedGame);
+        return { roomId, reset: true, gameState: updatedGame };
     },
     // Actualizar estado online
     async updateOnlineStatus(roomId, playerId, online) {
