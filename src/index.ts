@@ -9,7 +9,18 @@ const PORT = process.env.PORT || 3000;
 const Docu = `https://documenter.getpostman.com/view/40679903/2sB3WyLH4k`;
 
 // Middlewares
-app.use(cors());
+// Middlewares
+app.use(
+  cors({
+    origin: [
+      "http://localhost:1234",
+      "https://desafio-ppt.vercel.app",
+      "https://desafio-ppt.vercel.app", // o tu dominio real
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Rutas
