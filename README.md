@@ -33,23 +33,45 @@ npm start
 
 Ve a tu proyecto en Vercel → Settings → Environment Variables y agrega:
 
-- `FIREBASE_DATABASE_URL`: URL de tu Realtime Database (ej: `https://tu-proyecto-default-rtdb.firebaseio.com`)
-- `FIREBASE_SERVICE_ACCOUNT`: El contenido completo del archivo `serviceAccountKey.json` como un string JSON (copia todo el contenido del archivo)
-- `NODE_ENV`: `production`
+- **`FIREBASE_DATABASE_URL`**: URL de tu Realtime Database (ej: `https://tu-proyecto-default-rtdb.firebaseio.com`)
+- **`FIREBASE_SERVICE_ACCOUNT`**: El contenido completo del archivo `serviceAccountKey.json` como un **string JSON en una sola línea** (copia todo el contenido del archivo y elimina saltos de línea)
 
-### 2. Desplegar
+### 2. Compilar localmente (opcional pero recomendado)
+
+```bash
+# Compilar el proyecto
+npm run build
+
+# Verificar que la carpeta dist/ se creó correctamente
+```
+
+### 3. Desplegar
+
+**Opción A: Desde GitHub**
+
+1. Sube tu código a GitHub
+2. Conecta tu repositorio en Vercel
+3. Vercel detectará automáticamente la configuración y desplegará
+
+**Opción B: Vercel CLI**
 
 ```bash
 # Instalar Vercel CLI (si no lo tienes)
 npm i -g vercel
 
 # Desplegar
-vercel
+vercel --prod
 ```
 
-O simplemente conecta tu repositorio de GitHub con Vercel y se desplegará automáticamente.
+### 4. Verificar
 
-**Nota importante:** El archivo `serviceAccountKey.json` NO debe subirse a Git. En producción, usa la variable de entorno `FIREBASE_SERVICE_ACCOUNT`.
+Visita tu URL de Vercel (ej: `https://tu-proyecto.vercel.app/`) y deberías ver el JSON con la información de la API.
+
+**Notas importantes:**
+
+- El archivo `serviceAccountKey.json` NO debe subirse a Git (ya está en `.gitignore`)
+- En producción se usa la variable de entorno `FIREBASE_SERVICE_ACCOUNT`
+- Vercel compilará automáticamente TypeScript a JavaScript usando `npm run vercel-build`
 
 ## 📚 Documentación de la API
 
